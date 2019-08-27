@@ -1,0 +1,31 @@
+<header>
+  <div class="header-start">
+    <button mat-icon-button><i (click)="sidenav.toggle()" class="material-icons">format_align_left</i></button>
+    <span>Massage Tool</span>
+  </div>
+  <div class="header-end">
+      <button mat-icon-button><i class="material-icons">home</i></button>
+  </div>
+</header>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" opened>
+    <nav class="page-menu">
+      <ul>
+        <li *ngFor="let item of PAGE_MENU">
+          <a routerLink="{{item.path}}" routerLinkActive="active"><i class="material-icons">{{item.icon}}</i>{{item.title}}</a>
+          <ul class="subMenu" *ngIf="item.children && item.children.length > 0">
+            <li *ngFor="let sub_item of item.children">
+                <a routerLink="{{sub_item.path}}" routerLinkActive="active"><i class="material-icons">{{sub_item.icon}}</i>{{sub_item.title}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
